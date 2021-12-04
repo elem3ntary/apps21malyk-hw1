@@ -20,12 +20,28 @@ public class TemperatureSeriesAnalysisTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testAverageWithEmptyArray() {
+    public void testMinWithEmptyArray() {
         double[] temperatureSeries = {};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
         // expect exception here
-        seriesAnalysis.average();
+        seriesAnalysis.min();
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void testMaxWithEmptyArray() {
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        // expect exception here
+        seriesAnalysis.max();
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void testDeviationWithEmptyArray() {
+        double[] temperatureSeries = {};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        // expect exception here
+        seriesAnalysis.deviation();
     }
 
     @Test
@@ -49,8 +65,6 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);
     }
 
-    public void testDeviation() {
-    }
 
     @Test
     public void testMin() {
@@ -118,7 +132,15 @@ public class TemperatureSeriesAnalysisTest {
         assertArrayEquals("",expResult, actualResult, 0.00001);
     }
 
+    @Test
     public void testSummaryStatistics() {
+        double[] temperatureSeries = {-3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        TempSummaryStatistics statistics =  seriesAnalysis.summaryStatistics();
+        assertEquals(4, statistics.getAvgTemp(), 0.0001);
+        assertEquals(Math.sqrt(56/3), statistics.getDevTemp(), 1);
+        assertEquals(10.0, statistics.getMaxTemp(), 0.0001);
+        assertEquals(-3.0, statistics.getMinTemp(), 0.0001);
     }
 
     @Test
