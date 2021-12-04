@@ -28,7 +28,7 @@ public class TemperatureSeriesAnalysis {
         lastIdx = temperatureSeries.length - 1;
     }
 
-    private boolean isValidTemperature(double temperature) {
+    public boolean isValidTemperature(double temperature) {
         return temperature > -273;
     }
 
@@ -39,13 +39,13 @@ public class TemperatureSeriesAnalysis {
         return sum / temperatureSeries.length;
     }
 
-    private void validateTemperaturesSeries() {
+    public void validateTemperaturesSeries() {
         if (temperatureSeries.length == 0) {
             throw new IllegalArgumentException();
         }
     }
 
-    private double sum() {
+    public double sum() {
         double sum = 0;
         for(double temperature: temperatureSeries) {
             sum += temperature;
@@ -59,9 +59,9 @@ public class TemperatureSeriesAnalysis {
         double sumOfDeviations = 0;
 
         for(double temperature: temperatureSeries) {
-            sumOfDeviations += Math.pow(average - temperature, 2);
+            sumOfDeviations += Math.pow(temperature-average, 2);
         }
-        return sumOfDeviations / (temperatureSeries.length - 1);
+        return Math.sqrt(sumOfDeviations / (temperatureSeries.length - 1));
     }
 
     public double min() {

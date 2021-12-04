@@ -39,8 +39,14 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expResult, actualResult, 0.00001);        
     }
 
+    @Test
+    public void testSum() {
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expResult = 4.0;
 
-    public void testTestAverage() {
+        double actualResult = seriesAnalysis.sum();
+        assertEquals(expResult, actualResult, 0.00001);
     }
 
     public void testDeviation() {
@@ -124,5 +130,22 @@ public class TemperatureSeriesAnalysisTest {
 
         assertEquals(expNewMax, seriesAnalysis.max(), 0.00001);
         assertEquals(temperatureSeries.length * 2,seriesAnalysis.getTemperatureSeries().length);
+    }
+
+    @Test
+    public void testIsValidTemperature() {
+        double[] temperatureSeries = {-3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        boolean actual = seriesAnalysis.isValidTemperature(-290);
+        assertFalse(actual);
+    }
+
+    @Test
+    public void testTestDeviation() {
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double expected = Math.sqrt(56/3);
+        assertEquals(expected, seriesAnalysis.deviation(), 1);
+
     }
 }
