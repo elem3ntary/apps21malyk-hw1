@@ -8,6 +8,6 @@ public class GreaterTest extends TestCase {
     @Test
     public void testIsSuitable() {
         Greater greater = new Greater();
-        assertEquals(true, greater.isSuitable(5,6));
+        assertEquals(true, greater.isSuitable(7,6));
     }
 }
