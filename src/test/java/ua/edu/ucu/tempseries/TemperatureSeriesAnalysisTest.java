@@ -134,13 +134,13 @@ public class TemperatureSeriesAnalysisTest {
 
     @Test
     public void testSummaryStatistics() {
-        double[] temperatureSeries = {-3.0, -5.0, 1.0, 5.0};
+        double[] temperatureSeries = {3.0, -5.0, 1.0, 5.0};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
         TempSummaryStatistics statistics =  seriesAnalysis.summaryStatistics();
-        assertEquals(4, statistics.getAvgTemp(), 0.0001);
+        assertEquals(1.0, statistics.getAvgTemp(), 0.0001);
         assertEquals(Math.sqrt(56/3), statistics.getDevTemp(), 1);
-        assertEquals(10.0, statistics.getMaxTemp(), 0.0001);
-        assertEquals(-3.0, statistics.getMinTemp(), 0.0001);
+        assertEquals(5.0, statistics.getMaxTemp(), 0.0001);
+        assertEquals(-5.0, statistics.getMinTemp(), 0.0001);
     }
 
     @Test
